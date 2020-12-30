@@ -140,7 +140,7 @@ class WSIDataset(BaseDataset):
         img_HE = self.transform(img_HE)
         img_KI67 = self.transform(img_KI67)
 
-        return {'A': img_KI67, 'B': img_HE, 'A_path': path_tile_KI67, 'B_path': path_tile_HE}
+        return {'A': img_KI67, 'B': img_HE, 'A_paths': path_tile_KI67, 'B_paths': path_tile_HE}
 
     def __len__(self):
         """Return the total number of images."""
