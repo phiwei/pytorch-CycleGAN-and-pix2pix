@@ -72,6 +72,10 @@ class WSIDataset(BaseDataset):
         df_tile_HE = pd.read_pickle(path_df_tile_HE)
         df_tile_KI67 = pd.read_pickle(path_df_tile_KI67)
 
+        # Only select cancer tiles
+        df_tile_HE = df_tile_HE.loc[df_tile_HE['label'] > 0].reset_index(drop=True)
+        df_tile_KI67 = df_tile_KI67.loc[df_tile_KI67['label'] > 0].reset_index(drop=True)
+
         # Drop blury tiles
         df_tile_HE = df_tile_HE.loc[df_tile_HE['blur'] > 250].reset_index(drop=True)
         df_tile_KI67 = df_tile_KI67.loc[df_tile_KI67['blur'] > 250].reset_index(drop=True)
