@@ -13,6 +13,7 @@ You need to implement the following functions:
 """
 import os
 import sys
+import socket
 import numpy as np
 import pandas as pd
 
@@ -58,12 +59,19 @@ class WSIDataset(BaseDataset):
         BaseDataset.__init__(self, opt)
 
         # Set paths
-        path_df_match = '/mnt/hdd8tb/phiwei/projects/breast_ki67/dataframes/df_match_clinical.csv'
-        path_df_tile_HE = '/mnt/hdd8tb/phiwei/projects/breast_ki67/dataframes/df_tile_0.45366.pkl'
-        path_df_tile_KI67 = '/mnt/hdd8tb/phiwei/projects/breast_ki67/dataframes/df_tile_ki67_mpp_0.45366_ts_500_str_500.pkl'
+        if socket.gethostname().endswith('1'):
+            path_dfs_base = '/mnt/hdd8tb/phiwei/projects/breast_ki67/dataframes/'
+            path_imgs_base = '/mnt/ssd2tb/data/breast_ki67/'
+        elif socket.gethostname().endswith('6'):
+            path_dfs_base = '/mnt/hdd16tb/data/breast_ki67/dataframes/'
+            path_imgs_base = '/mnt/ssd3tb/data/breast_ki67/'
 
-        self.path_base_HE = '/mnt/ssd2tb/data/breast_ki67/tiles_0.45366/'
-        self.path_base_KI67 = '/mnt/ssd2tb/data/breast_ki67/tiles_ki67_mpp_0.45366_ts_500_str_500/'
+        path_df_match = os.path.join(path_dfs_base, 'df_match_clinical.csv')
+        path_df_tile_HE = os.path.join(path_dfs_base, 'df_tile_0.45366.pkl')
+        path_df_tile_KI67 = os.path.join(path_dfs_base, 'df_tile_ki67_mpp_0.45366_ts_500_str_500.pkl')
+
+        self.path_base_HE = os.path.join(path_imgs_base, 'tiles_he_mpp_0.45366_ts_500_str_500')
+        self.path_base_KI67 = os.path.join(path_imgs_base, 'tiles_ki67_mpp_0.45366_ts_500_str_500')
 
         # Load dfs
         df_match = pd.read_csv(path_df_match)
