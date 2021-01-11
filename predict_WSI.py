@@ -60,7 +60,10 @@ if __name__ == '__main__':
         model.test()           # run inference
         img_path = model.get_image_paths()[0]     # get image paths
         visuals = model.get_current_visuals()['fake']  # get image results
-        visuals = visuals.cpu().detach().numpy().squeeze()
+        visuals = visuals.cpu().detach().numpy()
+
+        print(visuals.shape)
+
         if np.max(visuals) < 2:
             visuals = visuals * 255
         
