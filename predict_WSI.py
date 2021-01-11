@@ -60,6 +60,10 @@ if __name__ == '__main__':
         visuals = model.get_current_visuals()  # get image results
         img_path = model.get_image_paths()     # get image paths
 
+        print(img_path)
+
+        print(visuals.shape)
+
         # Make output image path, generate slide folder if necessary
         path = os.path.normpath(img_path)
         components = path.split(os.sep)
