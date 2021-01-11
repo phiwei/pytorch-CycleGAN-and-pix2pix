@@ -83,6 +83,10 @@ class WSIPredictionDataset(BaseDataset):
         df_tile_HE = df_tile_HE.loc[df_tile_HE['blur'] > 250].reset_index(drop=True)
         df_tile_KI67 = df_tile_KI67.loc[df_tile_KI67['blur'] > 250].reset_index(drop=True)
 
+        # For debugging
+        df_tile_HE = df_tile_HE.loc[np.random.choice(len(df_tile_HE), size=500)].reset_index(drop=True)
+        df_tile_KI67 = df_tile_KI67.loc[np.random.choice(len(df_tile_KI67), size=500)].reset_index(drop=True)
+
         # Construct lists of tile paths
         self.tiles_he = [os.path.join(self.path_base_HE, 
                                       row['slide_name'], 
