@@ -53,9 +53,9 @@ if __name__ == '__main__':
     # For [pix2pix]: we use batchnorm and dropout in the original pix2pix. You can experiment it with and without eval() mode.
     # For [CycleGAN]: It should not affect CycleGAN as CycleGAN uses instancenorm without dropout.
     model.eval()
-    for i, data in enumerate(dataset):
-        # if i >= opt.num_test:  # only apply our model to opt.num_test images.
-        #    break
+    for i, data in enumerate(tqdm(dataset, total=len(dataset)))
+        if i >= opt.num_test:  # only apply our model to opt.num_test images.
+            break
         model.set_input(data)  # unpack data from data loader
         model.test()           # run inference
         img_path = model.get_image_paths()[0]     # get image paths
