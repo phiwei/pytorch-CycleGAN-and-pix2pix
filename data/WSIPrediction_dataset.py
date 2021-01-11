@@ -92,7 +92,7 @@ class WSIPredictionDataset(BaseDataset):
                                       row['slide_name'], 
                                       row['tile_name'])
                          for _, row in tqdm(df_tile_HE.iterrows(), total=len(df_tile_HE))]
-        self.tiles_ki67 = [os.path.join(self.path_base_HE, 
+        self.tiles_ki67 = [os.path.join(self.path_base_KI67, 
                                         row['slide_name'], 
                                         row['tile_name'])
                            for _, row in tqdm(df_tile_KI67.iterrows(), total=len(df_tile_KI67))]
