@@ -57,12 +57,8 @@ if __name__ == '__main__':
             break
         model.set_input(data)  # unpack data from data loader
         model.test()           # run inference
-        visuals = model.get_current_visuals()  # get image results
-        img_path = model.get_image_paths()     # get image paths
-
-        print(img_path)
-
-        print(visuals.keys())
+        visuals = model.get_current_visuals()['fake']  # get image results
+        img_path = model.get_image_paths()[0]     # get image paths
 
         # Make output image path, generate slide folder if necessary
         path = os.path.normpath(img_path)
@@ -77,6 +73,8 @@ if __name__ == '__main__':
         # Save output image
         image = Image.fromarray(visuals.astype('uint8'), 'RGB')
         image.save(path_tile_out, quality=80)
+
+
 
 
 
