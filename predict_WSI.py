@@ -61,7 +61,7 @@ if __name__ == '__main__':
         img_path = model.get_image_paths()[0]     # get image paths
         visuals = model.get_current_visuals()['fake']  # get image results
         visuals = visuals.cpu().detach().numpy().squeeze()
-        visuals = visuals.transpose(2, 0, 1)
+        visuals = np.transpose(visuals, (1, 2, 0))
 
         print(visuals.shape)
 
