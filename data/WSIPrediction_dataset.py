@@ -62,7 +62,7 @@ class WSIPredictionDataset(BaseDataset):
             path_imgs_base = '/mnt/ssd3tb/data/breast_ki67/'
 
         path_df_match = os.path.join(path_dfs_base, 'df_match_clinical.csv')
-        path_df_tile_HE = os.path.join(path_dfs_base, 'df_tile_0.45366.pkl')
+        path_df_tile_HE = os.path.join(path_dfs_base, 'df_tile_he_mpp_0.45366_ts_500_str_500.pkl')
         path_df_tile_KI67 = os.path.join(path_dfs_base, 'df_tile_ki67_mpp_0.45366_ts_500_str_500.pkl')
 
         self.path_base_HE = os.path.join(path_imgs_base, 'tiles_he_mpp_0.45366_ts_500_str_500')
@@ -84,8 +84,8 @@ class WSIPredictionDataset(BaseDataset):
         df_tile_KI67 = df_tile_KI67.loc[df_tile_KI67['blur'] > 250].reset_index(drop=True)
 
         # Draw random subset
-        df_tile_HE = df_tile_HE.loc[np.random.choice(len(df_tile_HE), size=500)]
-        df_tile_KI67 = df_tile_KI67.loc[np.random.choice(len(df_tile_KI67), size=500)]
+        # df_tile_HE = df_tile_HE.loc[np.random.choice(len(df_tile_HE), size=500)]
+        # df_tile_KI67 = df_tile_KI67.loc[np.random.choice(len(df_tile_KI67), size=500)]
 
         # Construct lists of tile paths
         self.tiles_he = [os.path.join(self.path_base_HE, 
