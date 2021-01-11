@@ -72,7 +72,7 @@ if __name__ == '__main__':
         path = os.path.normpath(img_path)
         components = path.split(os.sep)
         folder_name = components[-3]
-        components[-3] = folder_name + '_generated'
+        components[-3] = folder_name + '_transformed'
         path_slide_folder = os.path.join('/', *components[:-1])
         if not os.path.exists(path_slide_folder):
             os.makedirs(path_slide_folder)
