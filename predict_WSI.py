@@ -27,6 +27,7 @@ See training and test tips at: https://github.com/junyanz/pytorch-CycleGAN-and-p
 See frequently asked questions at: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/docs/qa.md
 """
 import os
+import numpy as np
 from tqdm import tqdm
 from PIL import Image
 from options.test_options import TestOptions
@@ -57,9 +58,12 @@ if __name__ == '__main__':
             break
         model.set_input(data)  # unpack data from data loader
         model.test()           # run inference
-        visuals = model.get_current_visuals()['fake']  # get image results
         img_path = model.get_image_paths()[0]     # get image paths
-
+        visuals = model.get_current_visuals()['fake']  # get image results
+        visuals = visuals.cpu().detach().numpy()
+        if np.max(visuals) < 2:
+            visuals = visuals * 255
+        
         # Make output image path, generate slide folder if necessary
         path = os.path.normpath(img_path)
         components = path.split(os.sep)
