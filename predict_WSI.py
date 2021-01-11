@@ -62,7 +62,7 @@ if __name__ == '__main__':
 
         print(img_path)
 
-        print(visuals.shape)
+        print(visuals.keys())
 
         # Make output image path, generate slide folder if necessary
         path = os.path.normpath(img_path)
