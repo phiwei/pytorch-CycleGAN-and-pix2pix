@@ -23,7 +23,7 @@ from torchvision import transforms
 from data.base_dataset import BaseDataset, get_transform
 
 
-class WSIPredictionDataset(BaseDataset):
+class HE2KI67PredictionDataset(BaseDataset):
     """A template dataset class for you to implement custom datasets."""
     @staticmethod
     def modify_commandline_options(parser, is_train):
@@ -141,7 +141,7 @@ class WSIPredictionDataset(BaseDataset):
         img_HE = self.transform(img_HE)
         img_KI67 = self.transform(img_KI67)
 
-        return {'A': img_KI67, 'B': img_HE, 'A_paths': path_tile_KI67, 'B_paths': path_tile_HE}
+        return {'A': img_HE, 'B': img_KI67, 'A_paths': path_tile_HE, 'B_paths': path_tile_KI67}
 
     def __len__(self):
         """Return the total number of images."""
